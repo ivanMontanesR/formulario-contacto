@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Contacto</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 35px;
+        max-width: 550px;
+        width: 100%;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 8px;
+        font-size: 32px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 25px;
+        font-size: 15px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .required {
+        color: #ef4444;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: inherit;
+        transition: all 0.3s;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      select {
+        cursor: pointer;
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: all 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .message {
+        display: none;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 15px;
+        font-weight: 600;
+      }
+
+      .success {
+        background: #10b981;
+        color: white;
+      }
+
+      .error {
+        background: #ef4444;
+        color: white;
+      }
+
+      .info-box {
+        background: #dbeafe;
+        border-left: 4px solid #3b82f6;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 13px;
+        color: #1e40af;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 Contáctanos</h1>
+      <p class="subtitle">Respuesta en menos de 24 horas</p>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label>Nombre completo <span class="required">*</span></label>
+          <input type="text" id="nombre" required placeholder="Juan Pérez" />
+        </div>
+
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="email"
+            required
+            placeholder="juan@ejemplo.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Teléfono</label>
+          <div style="display: flex; gap: 10px">
+            <select id="codigo_pais" style="width: 100px">
+              <option value="34" selected>🇪🇸 +34</option>
+              <option value="33">🇫🇷 +33</option>
+              <option value="351">🇵🇹 +351</option>
+              <option value="44">🇬🇧 +44</option>
+              <option value="1">🇺🇸 +1</option>
+            </select>
+            <input
+              type="tel"
+              id="telefono"
+              placeholder="692 789 360"
+              style="flex: 1"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Asunto <span class="required">*</span></label>
+          <select id="asunto" required>
+            <option value="">Selecciona...</option>
+            <option value="Consulta">Consulta general</option>
+            <option value="Presupuesto">Presupuesto</option>
+            <option value="Soporte">Soporte técnico</option>
+            <option value="Colaboración">Colaboración</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Mensaje <span class="required">*</span></label>
+          <textarea
+            id="mensaje"
+            required
+            placeholder="Escribe tu mensaje..."
+          ></textarea>
+        </div>
+
+        <button type="submit">Enviar mensaje ✉️</button>
+      </form>
+
+      <div class="message success" id="successMsg">
+        ✅ ¡Mensaje enviado! Te responderemos pronto.
+      </div>
+
+      <div class="message error" id="errorMsg">
+        ❌ Error al enviar. Verifica que n8n esté escuchando.
+      </div>
+    </div>
+
+    <script>
+      // ⚠️ URL de tu webhook n8n
+      const WEBHOOK_URL = "https://elenora-unstapled-sherika.ngrok-free.dev";
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const btn = e.target.querySelector("button");
+          const successMsg = document.getElementById("successMsg");
+          const errorMsg = document.getElementById("errorMsg");
+
+          // Ocultar mensajes
+          successMsg.style.display = "none";
+          errorMsg.style.display = "none";
+
+          // Deshabilitar botón
+          btn.disabled = true;
+          btn.textContent = "⏳ Enviando...";
+
+          // Datos del formulario
+          const data = {
+            nombre: document.getElementById("nombre").value,
+            email: document.getElementById("email").value,
+            telefono:
+              document.getElementById("telefono").value || "No proporcionado",
+            asunto: document.getElementById("asunto").value,
+            mensaje: document.getElementById("mensaje").value,
+            fecha: new Date().toLocaleString("es-ES"),
+          };
+
+          try {
+            const response = await fetch(WEBHOOK_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+              successMsg.style.display = "block";
+              e.target.reset();
+            } else {
+              throw new Error("Error");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            errorMsg.style.display = "block";
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "Enviar mensaje ✉️";
+          }
+        });
+    </script>
+  </body>
+</html>
